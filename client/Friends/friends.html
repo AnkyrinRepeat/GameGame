@@ -1,0 +1,12 @@
+
+<div ng-controller='FriendsController'>
+	<h3>Steam ID</h3>
+
+	<form class='input-control text'>
+		<input class='text' type='text' name'user' ng-model='clientSteamId'>
+		<input type='submit' value='Submit' ng-click='findUser(clientSteamId)'>
+	</form>	
+	<span>Hello {{clientSteamId}}</span>
+	<ul ng-repeat='friend in clientFriends'>{{friend.steamid}}</ul>
+</div>
+

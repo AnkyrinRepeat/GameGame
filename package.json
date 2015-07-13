@@ -1,0 +1,27 @@
+{
+  "name": "gamegame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "multer": "^0.1.8",
+    "promise": "^7.0.3",
+    "request": "^2.58.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnkyrinRepeat/GameGame.git"
+  },
+  "author": "Colin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnkyrinRepeat/GameGame/issues"
+  },
+  "homepage": "https://github.com/AnkyrinRepeat/GameGame#readme"
+}

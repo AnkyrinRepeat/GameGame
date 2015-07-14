@@ -18,7 +18,7 @@ app.post('/steamfriends', function(req, res) {
 })
 
 app.post('/steamgames', function(req, res) {
-  request('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=E2CFE7F7D8694A7E18DFDE00853526F4&steamid='+req.body.steamId+'&format=json&include_played_free_games',
+  request('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=E2CFE7F7D8694A7E18DFDE00853526F4&steamid='+req.body.steamId+'&format=json&include_played_free_games&include_appinfo=1',
    function(error, response, body) {
     if (error) throw error;
     res.send(body)
@@ -26,7 +26,7 @@ app.post('/steamgames', function(req, res) {
 })
 
 app.post('/steamname', function(req, res) {
-  request('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=E2CFE7F7D8694A7E18DFDE00853526F4&steamids='+req.body.steamId,
+  request('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=E2CFE7F7D8694A7E18DFDE00853526F4&steamids='+req.body.steamId.steamid,
    function(error, response, body) {
     if (error) throw error;
     res.send(body)

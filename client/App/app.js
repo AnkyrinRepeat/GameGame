@@ -8,7 +8,7 @@ angular.module('gamegame', [
 ])
 
 .config(function($stateProvider, $urlRouterProvider){
-  $urlRouterProvider.otherwise('/')
+  $urlRouterProvider.otherwise('/friends')
 
   $stateProvider
     .state('friends', {

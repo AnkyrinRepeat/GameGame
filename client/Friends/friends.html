@@ -1,18 +1,25 @@
 <div ng-controller='FriendsController'>
-	<h3>Steam ID</h3>
-	<span>Games!{{games}}</span>
 
-
-	<form class='input-control text'>
-		<input class='text' type='text' name'user' ng-model='clientSteamId'>
-		<input type='submit' value='Submit' ng-click='findUser(clientSteamId)'>
-		<input type='submit' value='Colin' ng-click='findUser("76561197972867333")'>
-		<input type='submit' value='Find Games' ng-click='findGames()'>
-	</form>	
+<div class ='row'>
+	<div class='span 2'></div>
+	<div class='span 8'>
+		<form class='input-control text'>
+			<input class='text' type='text' name'user' placeholder='Steam ID' ng-model='clientSteamId'>
+			<input type='submit' value='Submit' ng-click='findUser(clientSteamId)'>
+			<input type='submit' value='Colin' ng-click='findUser("76561197972867333")'>
+			<input type='submit' value='Find Games' ng-click='findGames()'>
+		</form>	
+	</div>
+</div>
+	<div class='span 2'></div>
 	<ul ng-repeat='friend in friends'>
 		<a href = '/#/' ng-click='toggleFriend(friend.steamid)' toggle-class="active">
-			{{friend.steamid}}
+			<span style='color:{{friend.style}}' ng-click='toggle(friend)'>{{friend.personaname}}</span>
 		</a><br>
+	</ul>
+
+	<ul ng-repeat='game in games' ng-show='state==="games"'>
+		<span ng-click='changeClass()'='{{game}}'>{{game}}</span>
 	</ul>
 </div>
 

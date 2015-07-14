@@ -1,31 +1,43 @@
-angular.module('gamegame.friends', ['gamegame.services'])
+angular.module('gamegame.friends', [
+  'gamegame.services',
+  'ui.bootstrap'
+  ])
 
 .controller('FriendsController', function($scope, $state, Steam){
   $scope.clientId = 0;
-  $scope.friends;
+  $scope.friends = [];
   $scope.savedFriends = []
   $scope.games = [];
+  $scope.state = '';
 
   $scope.findUser = function(steamid) {
     Steam.getFriends(steamid)
     .then(function(data){
       var friends = data.data.friendslist.friends;
-      _.each(friends, Steam.findName()
-      $scope.friends = data.data.friendslist.friends;
+      _.each(friends, function(steamid){
+        Steam.findName(steamid).then(function(data){
+          data.data.response.players[0].style = 'blue'
+          $scope.friends.push(data.data.response.players[0])
+        })
+      })
+
+      $scope.friends;
       Steam.getGames(steamid)
       .then(function(data){
         var list = data.data.response.games
-        // .filter(
-        //   function(element, index, array){
-        //     return element.playtime_forever>60;
-        //   }
-        // )
+        .filter(
+          function(element, index, array){
+            return element.playtime_forever>60;
+          }
+        )
+
         list.forEach(function(val, index, arr){
-          $scope.games.push(val.appid)
+          $scope.games.push(val.name)
         })
       })
     })
-  } 
+    $scope.state = 'friends';
+  }
 
   $scope.findGames = function() {
     var steamids = $scope.savedFriends
@@ -34,17 +46,19 @@ angular.module('gamegame.friends', ['gamegame.services'])
       Steam.getGames(steamids[i])
       .then(function(data){
         var list = data.data.response.games
-        // .filter(
-        //   function(element, index, array){
-        //     return element.playtime_forever>60;
-        //   }
-        // )
-        list = _.map(list, function(obj){
-          return obj.appid
-        })
+        .filter(
+          function(element, index, array){
+            return element.playtime_forever>60;
+          }
+        )
         console.log(list)
+        list = _.map(list, function(obj){
+          return obj.name
+        })
         $scope.games = _.intersection($scope.games, list)
       })
+      $scope.friends = [];
+      $scope.state = 'games'
     }
   }
 
@@ -54,6 +68,14 @@ angular.module('gamegame.friends', ['gamegame.services'])
     ? $scope.savedFriends.push(steamid)
     : $scope.savedFriends.splice(index, 1)
     console.log($scope.savedFriends)
+  }
+
+  $scope.toggle = function(friend){
+    if (friend.style==="red") {
+      friend.style="blue"
+    } else {
+      friend.style="red"
+    }
   }
 })
 

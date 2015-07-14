@@ -4,7 +4,8 @@ angular.module('gamegame', [
   'gamegame.services',
   'gamegame.friends',
   'gamegame.games',
-  'ui.router'
+  'ui.router',
+  'ui.bootstrap'
 ])
 
 .config(function($stateProvider, $urlRouterProvider){

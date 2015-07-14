@@ -2,6 +2,8 @@
 
 <h3>Game List</h3>
 
+  <div>{{games}}</div>
+
 	<ul ng-repeat='friend in friends'>
 		<input type="checkbox" ng-model="selected[record.Id]"> {{record.Id}}
 		{{friend.steamid}} <span>{{checkboxModel.friend}}</span>
